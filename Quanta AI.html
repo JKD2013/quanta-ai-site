@@ -1,44 +1,275 @@
 <!DOCTYPE html>
-<html lang="en-GB">
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="content-type">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="origin-when-cross-origin">
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Quanta AI — From spark to shipped</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Quanta AI transforms raw ideas into ready-to-publish assets—fast. From spark to shipped." />
+  <meta property="og:title" content="Quanta AI — From spark to shipped" />
+  <meta property="og:description" content="Turn ideas into publish-ready assets in seconds. Templates, Spaces, Personas, and one-click exports." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://example.com/og-image.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0A0A0F; --surface:#0E1016; --text:#F5F7FA; --muted:#B9C2CF;
+      --teal:#00E6D2; --violet:#7A5CFF; --white:#FFFFFF; --gray:#151826;
+      --green:#2ECC71; --warning:#F5A623; --red:#E74C3C;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    a{color:var(--text);text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+    .nav{position:sticky;top:0;z-index:100;background:rgba(10,10,15,0.8);backdrop-filter:saturate(150%) blur(8px);border-bottom:1px solid #1c2033}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand svg{width:28px;height:28px}
+    .nav-links{display:flex;gap:22px;align-items:center}
+    .btn{display:inline-block;padding:10px 16px;border-radius:10px;font-weight:600}
+    .btn-primary{background:var(--teal);color:#001312}
+    .btn-outline{border:1px solid #2a3148;color:var(--text)}
+    .hero{padding:80px 0 40px;background:linear-gradient(180deg, rgba(122,92,255,0.07) 0%, rgba(0,230,210,0.06) 60%, rgba(10,10,15,0) 100%)}
+    .hero-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:24px;align-items:center}
+    .hero h1{font-size:52px;line-height:1.05;margin:0}
+    .hero p{color:var(--muted);font-size:18px;margin:16px 0 22px}
+    .hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+    .card{background:var(--surface);border:1px solid #1c2033;border-radius:14px;padding:18px}
+    .demo{display:flex;flex-direction:column;gap:12px}
+    .prompt{background:var(--gray);border-radius:12px;padding:14px}
+    .output{display:grid;gap:10px}
+    .chip{display:inline-flex;align-items:center;gap:8px;background:#121522;border:1px solid #23263a;color:var(--muted);font-size:12px;border-radius:999px;padding:6px 10px}
+    .section{padding:54px 0}
+    .features{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .feature h3{margin:0 0 6px;font-size:18px}
+    .feature p{margin:0;color:var(--muted)}
+    .usecases{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .usecase{border:1px dashed #2a3148}
+    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .price h4{margin:0 0 10px}
+    .price ul{margin:0;padding-left:18px;color:var(--muted)}
+    .templates{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+    .template{cursor:pointer;transition:border-color .2s}
+    .template:hover{border-color:var(--teal)}
+    .footer{border-top:1px solid #1c2033;padding:30px 0;color:var(--muted)}
+    .small{font-size:13px;color:var(--muted)}
+    .mono{font-family:"JetBrains Mono",monospace}
+    .menu-btn{display:none}
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr 1fr}
+      .usecases{grid-template-columns:1fr}
+      .pricing{grid-template-columns:1fr}
+      .templates{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:540px){
+      .nav-links{display:none}
+      .menu-btn{display:inline-block}
+      .features{grid-template-columns:1fr}
+      .templates{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#">
+        <!-- Minimal Q logo -->
+        <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+          <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#00E6D2"/><stop offset="100%" stop-color="#7A5CFF"/>
+          </linearGradient></defs>
+          <circle cx="16" cy="16" r="12" fill="none" stroke="url(#g)" stroke-width="2"/>
+          <path d="M22 22 L28 28" stroke="#7A5CFF" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <strong>Quanta AI</strong>
+      </a>
+      <button class="btn btn-outline menu-btn" aria-label="Toggle menu" onclick="toggleMenu()">Menu</button>
+      <div id="navLinks" class="nav-links" role="navigation" aria-label="Primary">
+        <a href="#product" class="small">Product</a>
+        <a href="#templates" class="small">Templates</a>
+        <a href="#pricing" class="small">Pricing</a>
+        <a href="#docs" class="small">Docs</a>
+        <a href="#signin" class="small">Sign In</a>
+        <a href="#start" class="btn btn-primary">Start Free</a>
+      </div>
+    </div>
+  </nav>
 
-    <title>Microsoft Copilot: Your AI companion</title>
-    <meta name="description" content="Microsoft Copilot is your companion to inform, entertain and inspire. Get advice, feedback and straightforward answers. Try Copilot now.">
-    <link rel="canonical" href="https://copilot.microsoft.com">
-    <meta name="apple-itunes-app" content="app-id=6472538445">
-    <meta property="og:title" content="Microsoft Copilot: Your AI companion">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Microsoft Copilot: Your AI companion">
-    <meta property="og:description" content="Microsoft Copilot is your companion to inform, entertain and inspire. Get advice, feedback and straightforward answers. Try Copilot now.">
-    <meta property="og:url" content="https://copilot.microsoft.com">
-    <meta property="og:image" content="/static/cmc/images/meta-image.jpg">
-    <meta property="og:image:width" content="600">
-    <meta property="og:image:height" content="315">
-    
-    <meta name="x-client-data" content="">
+  <!-- Hero -->
+  <header class="hero" id="start">
+    <div class="container hero-grid">
+      <div>
+        <h1>From spark to shipped.</h1>
+        <p>Quanta AI transforms your raw ideas into ready‑to‑publish assets—faster than you can brief a team.</p>
+        <div class="hero-cta">
+          <a href="#demo" class="btn btn-primary">Start Free</a>
+          <a href="#demo" class="btn btn-outline">See it in action</a>
+        </div>
+        <div class="chip" style="margin-top:14px">Watch an idea become a campaign in under 30 seconds.</div>
+      </div>
+      <div class="card demo" id="demo" aria-live="polite">
+        <div class="chip mono">Prompt</div>
+        <div class="prompt mono">"Plan a 3‑post launch for my new app."</div>
+        <div class="chip mono">Output</div>
+        <div class="output">
+          <div class="card">
+            <strong>Post 1</strong><br/><span class="small">Teaser caption + image</span>
+          </div>
+          <div class="card">
+            <strong>Post 2</strong><br/><span class="small">Feature demo script</span>
+          </div>
+          <div class="card">
+            <strong>Post 3</strong><br/><span class="small">Social proof graphic</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:6px;">
+          <button class="btn btn-outline" onclick="refine()">Refine</button>
+          <button class="btn btn-outline" onclick="remix()">Remix</button>
+          <button class="btn btn-primary" onclick="exportNow()">Export</button>
+        </div>
+        <div id="demoStatus" class="small" style="margin-top:10px;color:var(--muted)">Breaking it down into building blocks…</div>
+      </div>
+    </div>
+  </header>
 
-    <link href="/static/cmc/favicon.ico" rel="icon" type="image/x-icon">
-    <link href="/static/cmc/favicon.svg" rel="icon" type="image/svg+xml">
+  <!-- Features -->
+  <section class="section" id="product" aria-labelledby="features-title">
+    <div class="container">
+      <h2 id="features-title">The building blocks of your next big idea.</h2>
+      <div class="features" style="margin-top:18px">
+        <div class="card feature">
+          <h3>Atomic blocks</h3>
+          <p>Outputs are modular—captions, images, outlines, charts—to rearrange and remix fast.</p>
+        </div>
+        <div class="card feature">
+          <h3>Spaces</h3>
+          <p>Organize projects, campaigns, and assets in one place. No more scattered docs.</p>
+        </div>
+        <div class="card feature">
+          <h3>Personas</h3>
+          <p>Save tone, style, and brand memory so every output sounds like you.</p>
+        </div>
+        <div class="card feature">
+          <h3>Exports</h3>
+          <p>Publish‑ready formats in one click: Markdown, HTML, social posts, product listings.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script nonce="0AfGeySDN08rcjH7h6Dwuw==">
-      window.appStart = performance.now();
-      window.isStudioServer = true;
-    </script>
+  <!-- Use cases / Social proof -->
+  <section class="section">
+    <div class="container">
+      <h2>Creators, marketers, and founders are already shipping with Quanta.</h2>
+      <div class="usecases" style="margin-top:18px">
+        <div class="card usecase">
+          <p>“I draft Shorts scripts in minutes instead of hours.”<br/><span class="small">— YouTube Creator</span></p>
+        </div>
+        <div class="card usecase">
+          <p>“I launched my app campaign without hiring a team.”<br/><span class="small">— Indie Founder</span></p>
+        </div>
+        <div class="card usecase">
+          <p>“Redbubble listings formatted perfectly, every time.”<br/><span class="small">— Designer</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    
+  <!-- Pricing -->
+  <section class="section" id="pricing" aria-labelledby="pricing-title">
+    <div class="container">
+      <h2 id="pricing-title">Start free. Scale when you’re ready.</h2>
+      <div class="pricing" style="margin-top:18px">
+        <div class="card price">
+          <h4>Free</h4>
+          <p class="small">3 spaces, basic memory, standard speed.</p>
+          <ul>
+            <li>Core templates</li>
+            <li>Basic exports</li>
+            <li>Community access</li>
+          </ul>
+          <div style="margin-top:12px"><a class="btn btn-outline" href="#start">Choose Free</a></div>
+        </div>
+        <div class="card price" style="border-color:#2c3555">
+          <h4>Starter</h4>
+          <p class="small">Unlimited spaces, brand kit, faster responses.</p>
+          <ul>
+            <li>Advanced templates</li>
+            <li>Brand personas</li>
+            <li>Priority speed</li>
+          </ul>
+          <div style="margin-top:12px"><a class="btn btn-primary" href="#start">Get Starter</a></div>
+        </div>
+        <div class="card price">
+          <h4>Pro</h4>
+          <p class="small">Team roles, advanced guardrails, integrations.</p>
+          <ul>
+            <li>Approvals & history</li>
+            <li>Notion/Canva/Shopify</li>
+            <li>Compliance & citations</li>
+          </ul>
+          <div style="margin-top:12px"><a class="btn btn-outline" href="#start">Upgrade to Pro</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <link rel="preload" href="/static/cmc/fonts/Ginto-Copilot-Upright-Variable.woff2" as="font" type="font/woff2" crossorigin="anonymous">
-    <link rel="preconnect" href="https://login.microsoftonline.com" crossorigin="anonymous">
-    <link rel="preconnect" href="https://login.live.com" crossorigin="anonymous">
-    <script nonce="0AfGeySDN08rcjH7h6Dwuw==" type="module" src="/static/cmc/assets/index-D01BvoPa.js"></script>
-    <link rel="modulepreload" href="/static/cmc/assets/vendor-CQObQ1AE.js">
-    
-    <link rel="stylesheet" href="/static/cmc/assets/index-BYAY-71l.css">
-  </head>
-  <body>
-    <div id="app"></div>
-  </body>
+  <!-- Templates -->
+  <section class="section" id="templates" aria-labelledby="templates-title">
+    <div class="container">
+      <h2 id="templates-title">Start with a template. Remix it your way.</h2>
+      <div class="templates" style="margin-top:18px">
+        <div class="card template"><strong>YouTube Shorts Script</strong><p class="small">Hook, body, CTA—ready in seconds.</p></div>
+        <div class="card template"><strong>TikTok Trend Remix</strong><p class="small">Adapt trending formats to your brand.</p></div>
+        <div class="card template"><strong>Redbubble Listing</strong><p class="small">Title, tags, description, mockup.</p></div>
+        <div class="card template"><strong>3‑Post Launch Kit</strong><p class="small">Captions + visuals in minutes.</p></div>
+        <div class="card template"><strong>SEO Blog Draft</strong><p class="small">Outline → draft → citations.</p></div>
+      </div>
+      <div style="margin-top:16px"><a class="btn btn-outline" href="#templates">Browse Template Library</a></div>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
+  <section class="section">
+    <div class="container card">
+      <h2>Your ideas deserve to ship.</h2>
+      <p class="small">No credit card required. Get your first campaign live in minutes.</p>
+      <div style="margin-top:8px"><a class="btn btn-primary" href="#start">Start Free Today</a></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div>
+        <strong>Quanta AI</strong><br/>
+        <span class="small">From spark to shipped.</span>
+      </div>
+      <div style="display:flex;gap:18px;justify-content:flex-end;flex-wrap:wrap">
+        <a class="small" href="#product">Product</a>
+        <a class="small" href="#templates">Templates</a>
+        <a class="small" href="#docs">Docs</a>
+        <a class="small" href="#changelog">Changelog</a>
+        <a class="small" href="#security">Security</a>
+        <a class="small" href="#contact">Contact</a>
+        <a class="small" href="#terms">Terms</a>
+        <a class="small" href="#privacy">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu(){
+      const nl = document.getElementById('navLinks');
+      nl.style.display = (nl.style.display === 'none' || !nl.style.display) ? 'flex' : 'none';
+    }
+    const statusEl = document.getElementById('demoStatus');
+    function refine(){ statusEl.textContent = 'Done. Your assets are ready to ship.'; }
+    function remix(){ statusEl.textContent = 'Remixed with fresh angles. Want me to add a TikTok script?'; }
+    function exportNow(){ statusEl.textContent = 'Ready to ship: choose your format.'; }
+  </script>
+</body>
 </html>
